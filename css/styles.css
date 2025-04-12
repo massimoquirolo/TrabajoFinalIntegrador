@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* font-family: "Fredoka", sans-serif; */
+    font-family: Arial, Helvetica, sans-serif; 
 }
 
 body {
@@ -9,13 +11,23 @@ body {
 }
 
 .nav {
+    display: flex;
     background-color:#ccc;
-    padding: 20px 0;
+    padding: 20px 30px;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: space-between;
 }
+
 
 .titulo{
     text-align: left;
     font-size: 1.5rem;
+}
+
+.titulo a {
+    text-decoration: none;
+    color: black;
 }
 
 .botones-nav{
@@ -31,6 +43,7 @@ body {
     background-color: rgb(221, 228, 133);
     padding: 10px;
     border-radius: 20px;
+    align-items: center;
     text-transform: uppercase;
     font-weight: bold;
     border: 2px solid black;
@@ -55,7 +68,7 @@ body {
     list-style-type: none;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 0.5rem;
     grid-row-gap: 2rem;
     justify-items: center;
@@ -66,12 +79,65 @@ body {
     text-align: center;
 }
 
-.card {
+/* .card {
+    padding: 20px;
     width: 300px;
     background-color: rgb(176, 215, 104);
     border-radius: 10px;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.338);
+} */
+
+
+.card {
+    display: flex; 
+    flex-direction: column; 
+    border-radius: 16px  16px 16px 16px;
+    width: 272px;
+    
+    box-shadow: 2px 7px 13px 0px rgba(0,0,0,0.2);
+    overflow: hidden; 
+    
+    border-color: #000000;
 }
+.card-body{
+    background-color: #fffcfc;
+    flex-grow: 1;
+    padding: 24px; 
+}
+
+.card-title{
+    color: #000000;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0px; 
+    padding: 0px; 
+}
+.card-texto{
+    line-height: 1.2rem;
+    margin: 10px 0px 0px 0px; 
+    font-size: 17px;
+    color: #000000;
+}
+
+.card-estado{
+    line-height: 1.2rem;
+    margin: 10px 0px 0px 0px; 
+    font-size: 17px;
+    color: #000000;
+    width: fit-content;
+    padding: 5px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.disponible {
+    background-color: rgba(75, 168, 21, 0.459);
+}
+
+.reservado {
+    background-color: rgba(168, 43, 21, 0.459);
+}
+
 
 .footer {
     background-color: antiquewhite;

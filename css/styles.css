@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-height: auto;
+}
+
+.nav {
+    background-color:#ccc;
+    padding: 20px 0;
+}
+
+.titulo{
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+.botones-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 0.7rem;
+}
+
+.boton {
+    color: black;
+    text-decoration: none;
+    background-color: rgb(221, 228, 133);
+    padding: 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 2px solid black;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.bienvenida {
+    background-color: beige;
+    padding: 20px 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.salones {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0.5rem;
+    grid-row-gap: 2rem;
+    justify-items: center;
+}
+
+.salones h3 {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.card {
+    width: 300px;
+    background-color: rgb(176, 215, 104);
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.338);
+}
+
+.footer {
+    background-color: antiquewhite;
+    padding: 20px;
+    font-weight: bold;
+    text-align: center;
+}

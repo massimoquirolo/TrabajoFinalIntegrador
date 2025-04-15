@@ -20,6 +20,7 @@
                 </a>
             </div>
             <div class="botones-nav">
+                <a class="boton" href="index.html">Inicio</a>
                 <a class="boton" href="institucional.html">Información Institucional</a>
                 <a class="boton" href="contacto.html">Contactos</a>
             </div>
@@ -27,7 +28,34 @@
     </header>
 
     <main class="contenedor">
-
+        <section class="bienvenida">
+            <h2>Estar en contacto nos interesa</h3>
+            <p>Completa el siguiente formulario, te responderemos  a la brevedad</p>
+        </section>
+        <form>
+            <!--<label for="name">Nombre completo:</label>-->
+            <p> Nombre completo</p><br>
+            <input type="text" name="nombre" size="30"><br><br>
+            <!--<label for="numero">Celular:</label>-->
+            <p> Número telefónico</p><br>
+            <input type="tel" name="telefono" size="30"><br><br>
+            <!--<label for="email">E-mail</label>-->
+            <p> E-mail</p><br>
+            <input type="email" name="email" size="30"><br><br>
+            <!-- <label for="motivo">Motivo: </label>-->
+            <p> Motivo</p><br>
+            <select name="motivo" id="motivo">
+                <option>Seleccione una opción</option>
+                <option value="disponibilidadcosto">Disponibilidad/costo</option>
+                <option value="cancelacion">Cancelación</option>
+                <option value="deuda">Consultar deuda</option>
+                <option value="pago">Informar pago</option>
+            </select><br><br>
+            <!--<label for="message">Mensaje:</label><br>-->
+            <p> Mensaje</p><br>
+            <textarea name="message" id="message" cols="30" rows="4"></textarea><br><br>
+            <input type="submit" value="Enviar">
+        </form>
     </main>
 
     <footer class="footer">

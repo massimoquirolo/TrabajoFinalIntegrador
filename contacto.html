@@ -21,30 +21,47 @@
             <h2>Estar en contacto nos interesa</h2>
             <p>Completa el siguiente formulario, te responderemos  a la brevedad</p>
         </section>
-        <form>
-            <!--<label for="name">Nombre completo:</label>-->
-            <p> Nombre completo</p><br>
-            <input type="text" name="nombre" size="30"><br><br>
-            <!--<label for="numero">Celular:</label>-->
-            <p> Número telefónico</p><br>
-            <input type="tel" name="telefono" size="30"><br><br>
-            <!--<label for="email">E-mail</label>-->
-            <p> E-mail</p><br>
-            <input type="email" name="email" size="30"><br><br>
-            <!-- <label for="motivo">Motivo: </label>-->
-            <p> Motivo</p><br>
-            <select name="motivo" id="motivo">
-                <option>Seleccione una opción</option>
-                <option value="disponibilidadcosto">Disponibilidad/costo</option>
-                <option value="cancelacion">Cancelación</option>
-                <option value="deuda">Consultar deuda</option>
-                <option value="pago">Informar pago</option>
-            </select><br><br>
-            <!--<label for="message">Mensaje:</label><br>-->
-            <p> Mensaje</p><br>
-            <textarea name="message" id="message" cols="30" rows="4"></textarea><br><br>
-            <input type="submit" value="Enviar">
-        </form>
+        
+    <div class="contenedorformulario">
+    <!-- izquierda -->
+    <div class="izquierda">
+      <form action="#" method="post">
+        <div class="campo">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="campo">
+          <label for="telefono">Teléfono:</label>
+          <input type="tel" id="telefono" name="telefono">
+        </div>
+        <div class="campo">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="campo">
+          <label for="motivo">Motivo:</label>
+          <select id="motivo" name="motivo" required>
+            <option value="">Seleccione una opción</option>
+            <option value="disponibilidad">Disponibilidad/costo</option>
+            <option value="cancelacion2">Cancelación</option>
+            <option value="deuda">Consultar deuda</option>
+            <option value="pago">Informar Pago</option>
+          </select>
+        </div>
+        <div class="campo">
+            <label for="mensaje">Mensaje:</label>
+            <textarea name="message" id="message" cols="55" rows="4"></textarea><br><br>
+        </div>
+        <div class="campo">
+          <button type="submit">Enviar</button>
+        </div>
+      </form>
+    </div>
+    <!-- derecha -->
+    <div class="derecha">
+    <img src="img/salon-ejemplo.jpg" alt="preview img" width="100%"/> 
+    </div>
+  </div>
     </main>
 
     <div id="include-footer"></div>

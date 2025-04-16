@@ -41,7 +41,7 @@
         <div class="campo">
           <label for="motivo">Motivo:</label>
           <select id="motivo" name="motivo" required>
-            <option value="">Seleccione una opción</option>
+            <option value="" disabled selected>-- Seleccione una opción --</option>
             <option value="disponibilidad">Disponibilidad/costo</option>
             <option value="cancelacion2">Cancelación</option>
             <option value="deuda">Consultar deuda</option>
@@ -53,13 +53,17 @@
             <textarea name="message" id="message" cols="55" rows="4"></textarea><br><br>
         </div>
         <div class="campo">
-          <button type="submit">Enviar</button>
+          <button class="boton" type="submit">
+            <span>
+                Enviar
+            </span>
+          </button>
         </div>
       </form>
     </div>
     <!-- derecha -->
     <div class="derecha">
-    <img src="img/salon-ejemplo.jpg" alt="preview img" width="100%"/> 
+        <img src="img/salon-ejemplo.jpg" alt="preview img" width="100%"/> 
     </div>
   </div>
     </main>

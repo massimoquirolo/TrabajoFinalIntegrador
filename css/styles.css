@@ -3,20 +3,38 @@
     padding: 0;
     box-sizing: border-box;
     /* font-family: "Fredoka", sans-serif; */
-    font-family: Arial, Helvetica, sans-serif; 
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 body {
     max-height: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f3f3f3;
+    align-items: center;
+}
+
+li {
+    list-style-type: none
 }
 
 .nav {
     display: flex;
-    background-color:#ccc;
+    background: linear-gradient(-90deg,rgb(219, 245, 255) 0%, #098797 100%);
+    background-size: cover;
     padding: 20px 30px;
     align-items: center;
     margin: 0 auto;
     justify-content: space-between;
+    height: 5rem;
+    border-bottom: 2px solid #000000;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* asegura que esté encima de todo */
 }
 
 
@@ -27,7 +45,24 @@ body {
 
 .titulo a {
     text-decoration: none;
-    color: black;
+}
+
+.titulo a h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.281);
+    margin: 0; 
+}
+
+.titulo a h1 span {
+    color: #95bec4;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.466);
+    transition: color 0.4s;
+}
+
+.titulo a:hover h1 span {
+    color: #098797;
 }
 
 .botones-nav{
@@ -37,7 +72,7 @@ body {
     gap: 0.7rem;
 }
 
-.boton {
+/* .boton {
     color: black;
     text-decoration: none;
     background-color: rgb(221, 228, 133);
@@ -47,16 +82,76 @@ body {
     text-transform: uppercase;
     font-weight: bold;
     border: 2px solid black;
+} */
+
+.boton {
+    outline: none;
+    cursor: pointer;
+    border: none;
+    padding: 0.9rem 2rem;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 0.05rem;
+    font-weight: 700;
+    font-size: 17px;
+    border-radius: 500px;
+    overflow: hidden;
+    background: #95bec4;
+    color: ghostwhite;
 }
+
+.boton span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+}
+
+.boton:hover span {
+    color: black;
+}
+
+.boton::before,
+.boton::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    color: white;
+}
+
+.boton::before {
+    content: "";
+    background: #098797;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.boton:hover::before {
+    transform: translate3d(100%, 0, 0);
+}
+
 
 .contenedor {
     display: flex;
+    flex: 1;
+    padding-top: 5rem;
     flex-direction: column;
     gap: 2rem;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin-bottom: 4rem;
 }
 
 .bienvenida {
-    background-color: beige;
     padding: 20px 0;
     align-items: center;
     display: flex;
@@ -64,13 +159,26 @@ body {
     gap: 1rem;
 }
 
+.bienvenida h2 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.bienvenida p {
+    font-size: 1.2rem;
+    text-align: center;
+    border: 1px solid #000000;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    background-color: #95bec4;
+}
+
 .salones {
     list-style-type: none;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 0.5rem;
-    grid-row-gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 3rem;
+    grid-row-gap: 3rem;
     justify-items: center;
 }
 
@@ -86,6 +194,16 @@ body {
     border-radius: 10px;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.338);
 } */
+
+.contenido-institucional {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contenido-institucional h2 {
+    text-decoration: underline;
+}
 
 
 .card {
@@ -119,6 +237,10 @@ body {
     color: #000000;
 }
 
+.card-descripcion {
+    height: 5rem;
+}
+
 .card-estado{
     line-height: 1.2rem;
     margin: 10px 0px 0px 0px; 
@@ -131,16 +253,16 @@ body {
 }
 
 .disponible {
-    background-color: rgba(75, 168, 21, 0.459);
+    background-color: #95bec4;
 }
 
 .reservado {
-    background-color: rgba(168, 43, 21, 0.459);
+    background-color: #a82b1575;
 }
 
 
 .footer {
-    background-color: antiquewhite;
+    background-color: #95bec4;
     padding: 40px 20px;
     font-weight: normal;
     color: black;
@@ -155,6 +277,7 @@ body {
     gap: 30px;
     max-width: 1200px;
     margin: auto;
+    text-align: center;
 }
 
 .footer-section {
@@ -189,8 +312,13 @@ body {
     text-decoration: underline;
 }
 
+#include-footer {
+    width: 100%;
+}
+
+
 .social-icons a {
-    margin-right: 10px;
+    margin: 0 5px;
     display: inline-block;
 }
 
@@ -211,7 +339,7 @@ body {
 /* CONTACTO */
 .contenedorformulario {
     display: flex;
-    height: 100vh;
+    align-items: center;
   }
 
 .izquierda, .derecha {
@@ -226,6 +354,7 @@ body {
 
 .derecha {
     background-color: #e0e0e0;
+    height: fit-content;
   }
 
 form {
@@ -235,6 +364,12 @@ form {
 
 div.campo {
     margin-bottom: 15px;
+}
+
+div.campo textarea {
+    max-width: 400px;
+    min-width: 400px;
+    max-height: 130px;
 }
 
 label {
@@ -247,17 +382,4 @@ input, select {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #45a049;
 }

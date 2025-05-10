@@ -6,20 +6,24 @@
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
-body {
+/* body {
     max-height: auto;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     background-color: #f3f3f3;
     align-items: center;
+} */
+
+body {
+    margin-top: 5rem;
 }
 
 li {
     list-style-type: none
 }
 
-.nav {
+/* .nav {
     display: flex;
     background: linear-gradient(-90deg,rgb(219, 245, 255) 0%, #098797 100%);
     background-size: cover;
@@ -30,6 +34,18 @@ li {
     height: 5rem;
     border-bottom: 2px solid #000000;
 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* asegura que esté encima de todo */
+/* } */
+
+.justify-items-center {
+    justify-items: center;
+}
+
+.nav-siempre-arriba {
     position: fixed;
     top: 0;
     left: 0;
@@ -90,6 +106,9 @@ li {
     border: none;
     padding: 0.9rem 2rem;
     margin: 0;
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
     font-family: inherit;
     font-size: inherit;
     position: relative;
@@ -182,6 +201,7 @@ li {
     justify-items: center;
 }
 
+
 .salones h3 {
     text-transform: uppercase;
     text-align: center;
@@ -206,7 +226,7 @@ li {
 }
 
 
-.card {
+.card-1 {
     display: flex; 
     flex-direction: column; 
     border-radius: 16px  16px 16px 16px;
@@ -217,13 +237,13 @@ li {
     
     border-color: #000000;
 }
-.card-body{
+.card-body-1{
     background-color: #fffcfc;
     flex-grow: 1;
     padding: 24px; 
 }
 
-.card-title{
+.card-title-1{
     color: #000000;
     font-weight: bold;
     font-size: 18px;

@@ -403,3 +403,16 @@ input, select {
     padding: 8px;
     box-sizing: border-box;
 }
+
+/* para que contacto sea responsive */
+/* estilo para que la imagen se adapte al alto del formulario */
+.imagen-banner {
+    height: 100%;              /* ocupa el alto disponible */
+    object-fit: cover;         /* recorta sin deformar */
+  }
+  
+  /* asegurar que el formulario tenga altura completa */
+  .formulario-box {
+    min-height: 100%;          /* ayuda a igualar altura */
+  }
+  

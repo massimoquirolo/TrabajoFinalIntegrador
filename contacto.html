@@ -1,81 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-  
-    <link rel="stylesheet" href="css/styles.css" >
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet" />
 
-    <title>TFG S.A.</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Hoja de estilos personalizada -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <title>TFG S.A.</title>
 </head>
 <body>
-    <div id="include-header"></div>
+  <div id="include-header"></div>
+  <script src="js/header.js"></script>
 
-    <script src="js/header.js"></script>
+  <main class="container-lg mt-4">
+    <section class="bienvenida">
+      <h2>Estar en contacto nos interesa</h2>
+      <p>Completa el siguiente formulario, te responderemos a la brevedad</p>
+    </section>
 
-    <main class="container-lg">
-        <section class="bienvenida">
-            <h2>Estar en contacto nos interesa</h2>
-            <p>Completa el siguiente formulario, te responderemos  a la brevedad</p>
-        </section>
-        
-      <div class="contenedorformulario">
-      <!-- izquierda -->
-      <div class="izquierda">
-        <form action="#" method="post">
-          <div class="campo">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
-          </div>
-          <div class="campo">
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" id="telefono" name="telefono">
-          </div>
-          <div class="campo">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="campo">
-            <label for="motivo">Motivo:</label>
-            <select id="motivo" name="motivo" required>
-              <option value="" disabled selected>-- Seleccione una opción --</option>
-              <option value="disponibilidad">Disponibilidad/costo</option>
-              <option value="cancelacion2">Cancelación</option>
-              <option value="deuda">Consultar deuda</option>
-              <option value="pago">Informar Pago</option>
-            </select>
-          </div>
-          <div class="campo">
-              <label for="mensaje">Mensaje:</label>
-              <textarea name="message" id="message" cols="55" rows="4"></textarea><br><br>
-          </div>
-          <div class="campo">
-            <button class="boton" type="submit">
-              <span>
-                  Enviar
-              </span>
-            </button>
-          </div>
-        </form>
+    <!-- fila con dos columnas -->
+    <div class="row g-4 align-items-stretch mt-4"> <!-- g-4 da espacio entre columnas en todas las resoluciones -->
+
+      <!-- columna izquierda - formulario -->
+      <div class="col-12 col-md-6">
+        <div class="h-100 d-flex flex-column justify-content-between formulario-box"><!-- h-100 fuerza el alto igual -->
+          <form action="#" method="post">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" required />
+            </div>
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Teléfono</label>
+              <input type="tel" class="form-control" id="telefono" name="telefono" />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required />
+            </div>
+            <div class="mb-3">
+              <label for="motivo" class="form-label">Motivo</label>
+              <select class="form-select" id="motivo" name="motivo" required>
+                <option value="" disabled selected>-- Seleccione una opción --</option>
+                <option value="disponibilidad">Disponibilidad/costo</option>
+                <option value="cancelacion2">Cancelación</option>
+                <option value="deuda">Consultar deuda</option>
+                <option value="pago">Informar Pago</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Mensaje</label>
+              <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="boton"><span>Enviar</span></button>
+            </div>
+          </form>
+        </div>
       </div>
-      <!-- derecha -->
-      <div class="derecha">
-          <img src="img/salon-ejemplo.jpg" alt="preview img" width="100%"/> 
+
+      <!-- columna derecha: imagenes -->
+      <div class="col-12 col-md-6 d-flex flex-column justify-content-between">
+        <!-- imagen 1: ocupa todo el alto disponible -->
+        <img src="img/salon-ejemplo.jpg" alt="Imagen salón" class="img-fluid imagen-banner mb-3" />
+
+        <!-- imagen 2: debajo, separada con margen -->
+        <img src="img/mapa.png" alt="Mapa ubicación" class="img-fluid" />
       </div>
     </div>
-    </main>
+  </main>
 
-    <div id="include-footer"></div>
+  <div id="include-footer"></div>
+  <script src="js/footer.js"></script>
 
-    <script src="js/footer.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
+

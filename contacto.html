@@ -28,12 +28,12 @@
     </section>
 
     <!-- fila con dos columnas -->
-    <div class="row g-4 align-items-stretch mt-4"> <!-- g-4 da espacio entre columnas en todas las resoluciones -->
+    <div class="row g-4 align-items-stretch mt-4 mb-4"> <!-- g-4 da espacio entre columnas en todas las resoluciones -->
 
       <!-- columna izquierda - formulario -->
       <div class="col-12 col-md-6">
         <div class="h-100 d-flex flex-column justify-content-between formulario-box"><!-- h-100 fuerza el alto igual -->
-          <form action="#" method="post">
+          <form action="#" method="post" class="col-md-12">
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
               <input type="text" class="form-control" id="nombre" name="nombre" required />
@@ -51,7 +51,7 @@
               <select class="form-select" id="motivo" name="motivo" required>
                 <option value="" disabled selected>-- Seleccione una opción --</option>
                 <option value="disponibilidad">Disponibilidad/costo</option>
-                <option value="cancelacion2">Cancelación</option>
+                <option value="cancelacion">Cancelación</option>
                 <option value="deuda">Consultar deuda</option>
                 <option value="pago">Informar Pago</option>
               </select>

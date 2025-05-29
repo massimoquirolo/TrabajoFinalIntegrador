@@ -416,3 +416,17 @@ input, select {
     min-height: 100%;          /* ayuda a igualar altura */
   }
   
+
+
+.miForm {
+  min-width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@media (max-width: 500px) {
+  .miForm {
+    min-width: 90%;
+  }
+}

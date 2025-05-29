@@ -430,3 +430,7 @@ input, select {
     min-width: 90%;
   }
 }
+
+.admin-table th, .admin-table td {
+    vertical-align: middle;
+}

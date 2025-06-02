@@ -58,6 +58,70 @@ const Salones = [
     }
 ];
 
+// ********************** AGREGADO POR JOAQUIN ***************************//
+// *******************  inicio del nuevo codigo para servicios *******************//
+
+const Servicios = [
+    { id: 'serv1', nombre: 'Animación Infantil', descripcion: 'Payasos, juegos y actividades recreativas' },
+    { id: 'serv2', nombre: 'Catering Básico', descripcion: 'Comida y bebida para 30 personas' }
+];
+
+// inicializamos servicios si no existen
+function inicializarServicios() {
+    if (!localStorage.getItem('servicios')) {
+        localStorage.setItem('servicios', JSON.stringify(Servicios));
+        console.log('LocalStorage inicializado con servicios por defecto.');
+    }
+}
+
+// obtenemos servicios
+function getServicios() {
+    const servicios = localStorage.getItem('servicios');
+    return servicios ? JSON.parse(servicios) : [];
+}
+
+// guardamos servicios
+function guardarServicios(servicios) {
+    localStorage.setItem('servicios', JSON.stringify(servicios));
+}
+
+inicializarServicios(); // Ejecutamos inicialización
+
+// ------------------ fin del nuevo codigo para servicios ------------------
+
+
+// ------------------ inico del nuevo codigo para imagenes ------------------
+
+const Imagenes = [
+    { id: 'img1', url: 'img/fiesta1.jpg', descripcion: 'Fiesta de cumpleaños con globos' },
+    { id: 'img2', url: 'img/fiesta2.jpg', descripcion: 'Mesa dulce decorada' }
+];
+
+// inicializamos imagenes si no existen
+function inicializarImagenes() {
+    if (!localStorage.getItem('imagenes')) {
+        localStorage.setItem('imagenes', JSON.stringify(Imagenes));
+        console.log('LocalStorage inicializado con imágenes por defecto.');
+    }
+}
+
+// obtenemos imagenes
+function getImagenes() {
+    const imagenes = localStorage.getItem('imagenes');
+    return imagenes ? JSON.parse(imagenes) : [];
+}
+
+// guardamos imagens
+function guardarImagenes(imagenes) {
+    localStorage.setItem('imagenes', JSON.stringify(imagenes));
+}
+
+inicializarImagenes(); // Ejecutamos inicializacion
+
+// ------------------ fin del nuevo codigo para imagenes ------------------//
+
+// **************** FIN AGREGADO POR JOAQUIN ***************//
+
 // funcion para inicializar el localstorage si la const no existe
 function inicializarLocalStorage() {
     if (!localStorage.getItem('salones')) {

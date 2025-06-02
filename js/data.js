@@ -58,8 +58,7 @@ const Salones = [
     }
 ];
 
-// ********************** AGREGADO POR JOAQUIN ***************************//
-// *******************  inicio del nuevo codigo para servicios *******************//
+//   inicio del nuevo codigo para servicios 
 
 const Servicios = [
     { id: 'serv1', nombre: 'Animación Infantil', descripcion: 'Payasos, juegos y actividades recreativas' },
@@ -87,10 +86,10 @@ function guardarServicios(servicios) {
 
 inicializarServicios(); // Ejecutamos inicialización
 
-// ------------------ fin del nuevo codigo para servicios ------------------
+//  fin del nuevo codigo para servicios 
 
 
-// ------------------ inico del nuevo codigo para imagenes ------------------
+//  inico del nuevo codigo para imagenes 
 
 const Imagenes = [
     { id: 'img1', url: 'img/fiesta1.jpg', descripcion: 'Fiesta de cumpleaños con globos' },
@@ -118,9 +117,8 @@ function guardarImagenes(imagenes) {
 
 inicializarImagenes(); // Ejecutamos inicializacion
 
-// ------------------ fin del nuevo codigo para imagenes ------------------//
+//  fin del nuevo codigo para imagenes 
 
-// **************** FIN AGREGADO POR JOAQUIN ***************//
 
 // funcion para inicializar el localstorage si la const no existe
 function inicializarLocalStorage() {

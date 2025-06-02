@@ -136,11 +136,11 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-// *************** AGREGADO POR JOACO ********************//
-// ------------------ inicio mostrar servicios (con tabla) ------------------
+
+//  inicio mostrar servicios (con tabla) 
 const tablaServicios = document.getElementById('tabla-servicios');
 
-// ------------------ inicio mostrar servicios CON BOTONES ------------------
+//  inicio mostrar servicios CON BOTONES 
 function mostrarServicios() {
     const servicios = getServicios();
     tablaServicios.innerHTML = '';
@@ -163,8 +163,8 @@ function mostrarServicios() {
     });
 }
 mostrarServicios();
-// ------------------ fin mostrar servicios con botones ------------------
-// ------------------ inicio eventos editar y eliminar servicios ------------------
+//  fin mostrar servicios con botones 
+//  inicio eventos editar y eliminar servicios 
 tablaServicios.addEventListener('click', (e) => {
     const target = e.target;
     const servicios = getServicios();
@@ -192,15 +192,15 @@ tablaServicios.addEventListener('click', (e) => {
         }
     }
 });
-// ------------------ fin eventos y eliminar servicios ------------------
+//  fin eventos y eliminar servicios 
 
 
 mostrarServicios();
-// ------------------ fin mostar servicios  ------------------
+//  fin mostar servicios  
 
 
 
-// ------------------ inicicio mostrar imagenes como tabla ------------------//
+//  inicicio mostrar imagenes como tabla 
 const tablaImagenes = document.getElementById('tabla-imagenes');
 
 function mostrarImagenes() {
@@ -225,8 +225,8 @@ function mostrarImagenes() {
     });
 }
 mostrarImagenes();
-// ------------------ fin mostrar imagenes como tabla ------------------
-// ------------------ inicio eventos editar y eliminar imagenes --------------------
+//  fin mostrar imagenes como tabla 
+//  inicio eventos editar y eliminar imagenes 
 tablaImagenes.addEventListener('click', (e) => {
     const target = e.target;
     const imagenes = getImagenes();
@@ -255,10 +255,10 @@ tablaImagenes.addEventListener('click', (e) => {
         }
     }
 });
-// ------------------ fin eventos editar y eliminar imagenes ------------------
+//  fin eventos editar y eliminar imagenes 
 
 
 
-//***************FIN AGREGADO POR JOACO********************//
+
 
 });

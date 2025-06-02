@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     if (sessionStorage.getItem('usuario')){
-        alert('El usuario ya se encuentra logueado.')
+        // alert('El usuario ya se encuentra logueado.')
         window.location.href = './panelAdmin.html';
     }
 

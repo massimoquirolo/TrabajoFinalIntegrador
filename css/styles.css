@@ -280,6 +280,9 @@ li {
     background-color: #a82b1575;
 }
 
+.img-max {
+    max-height: 170px;
+}
 
 .footer {
     background-color: #95bec4;
@@ -377,7 +380,7 @@ li {
     height: fit-content;
   }
 
-form {
+.formulario-contacto {
     max-width: 400px;
     margin: auto;
 }

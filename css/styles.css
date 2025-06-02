@@ -261,6 +261,10 @@ li {
     height: 5rem;
 }
 
+.altura-card{
+    height: 136px;
+}
+
 .card-estado{
     line-height: 1.2rem;
     margin: 10px 0px 0px 0px; 

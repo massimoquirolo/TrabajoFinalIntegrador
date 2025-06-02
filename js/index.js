@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         col.innerHTML = `
             <div class="card mx-auto" style="width: 18rem;">
                 <img src="${salon.imagen}" class="card-img-top img-max" alt="img">
-                <div class="card-body">
+                <div class="card-body altura-card">
                     <h5 class="card-title">${salon.nombre}</h5>
                     <p class="card-text">${salon.descripcion}</p>
                 </div>

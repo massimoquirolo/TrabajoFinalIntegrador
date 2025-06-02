@@ -89,6 +89,16 @@ document.addEventListener('DOMContentLoaded', () => {
         disponibleSalonInput.value = 'true';
     }
 
+    // Contador de caracteres de la descripcion de salones en el administrador
+    const textarea = document.getElementById("desc-salon");
+    const contador = document.getElementById("contador");
+
+    console.log(textarea);
+
+    textarea.addEventListener("input", function () {
+        contador.textContent = 90 - textarea.value.length;
+    });
+
     // mostrar lo primero inicial
     mostrarSalones();
 

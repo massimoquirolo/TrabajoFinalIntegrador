@@ -135,4 +135,130 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'index.html';
         })
     }
+
+// *************** AGREGADO POR JOACO ********************//
+// ------------------ inicio mostrar servicios (con tabla) ------------------
+const tablaServicios = document.getElementById('tabla-servicios');
+
+// ------------------ inicio mostrar servicios CON BOTONES ------------------
+function mostrarServicios() {
+    const servicios = getServicios();
+    tablaServicios.innerHTML = '';
+
+    if (servicios.length === 0) {
+        tablaServicios.innerHTML = '<tr><td colspan="3" class="text-center">No hay servicios registrados.</td></tr>';
+        return;
+    }
+
+    servicios.forEach(servicio => {
+        const row = tablaServicios.insertRow();
+        row.innerHTML = `
+            <td>${servicio.nombre}</td>
+            <td>${servicio.descripcion}</td>
+            <td>
+                <button class="btn btn-sm btn-warning edit-servicio-btn" data-id="${servicio.id}">Editar</button>
+                <button class="btn btn-sm btn-danger delete-servicio-btn" data-id="${servicio.id}">Eliminar</button>
+            </td>
+        `;
+    });
+}
+mostrarServicios();
+// ------------------ fin mostrar servicios con botones ------------------
+// ------------------ inicio eventos editar y eliminar servicios ------------------
+tablaServicios.addEventListener('click', (e) => {
+    const target = e.target;
+    const servicios = getServicios();
+
+    if (target.classList.contains('delete-servicio-btn')) {
+        const id = target.dataset.id;
+        const nuevosServicios = servicios.filter(s => s.id !== id);
+        guardarServicios(nuevosServicios);
+        mostrarServicios();
+    }
+
+    if (target.classList.contains('edit-servicio-btn')) {
+        const id = target.dataset.id;
+        const servicio = servicios.find(s => s.id === id);
+        if (servicio) {
+            const nuevoNombre = prompt("Editar nombre del servicio:", servicio.nombre);
+            const nuevaDescripcion = prompt("Editar descripción:", servicio.descripcion);
+
+            if (nuevoNombre && nuevaDescripcion) {
+                const editado = { ...servicio, nombre: nuevoNombre, descripcion: nuevaDescripcion };
+                const actualizados = servicios.map(s => s.id === id ? editado : s);
+                guardarServicios(actualizados);
+                mostrarServicios();
+            }
+        }
+    }
+});
+// ------------------ fin eventos y eliminar servicios ------------------
+
+
+mostrarServicios();
+// ------------------ fin mostar servicios  ------------------
+
+
+
+// ------------------ inicicio mostrar imagenes como tabla ------------------//
+const tablaImagenes = document.getElementById('tabla-imagenes');
+
+function mostrarImagenes() {
+    const imagenes = getImagenes();
+    tablaImagenes.innerHTML = '';
+
+    if (imagenes.length === 0) {
+        tablaImagenes.innerHTML = '<tr><td colspan="3" class="text-center">No hay imágenes registradas.</td></tr>';
+        return;
+    }
+
+    imagenes.forEach(img => {
+        const row = tablaImagenes.insertRow();
+        row.innerHTML = `
+            <td><img src="${img.url}" alt="miniatura" class="img-thumbnail" style="max-width: 100px; max-height: 80px;"></td>
+            <td>${img.descripcion}</td>
+            <td>
+                <button class="btn btn-sm btn-warning edit-img-btn" data-id="${img.id}">Editar</button>
+                <button class="btn btn-sm btn-danger delete-img-btn" data-id="${img.id}">Eliminar</button>
+            </td>
+        `;
+    });
+}
+mostrarImagenes();
+// ------------------ fin mostrar imagenes como tabla ------------------
+// ------------------ inicio eventos editar y eliminar imagenes --------------------
+tablaImagenes.addEventListener('click', (e) => {
+    const target = e.target;
+    const imagenes = getImagenes();
+
+    if (target.classList.contains('delete-img-btn')) {
+        const id = target.dataset.id;
+        const nuevasImagenes = imagenes.filter(img => img.id !== id);
+        guardarImagenes(nuevasImagenes);
+        mostrarImagenes();
+    }
+
+    if (target.classList.contains('edit-img-btn')) {
+        const id = target.dataset.id;
+        const imagen = imagenes.find(img => img.id === id);
+
+        if (imagen) {
+            const nuevaUrl = prompt("Editar URL de la imagen:", imagen.url);
+            const nuevaDesc = prompt("Editar descripción:", imagen.descripcion);
+
+            if (nuevaUrl && nuevaDesc) {
+                const editada = { ...imagen, url: nuevaUrl, descripcion: nuevaDesc };
+                const actualizadas = imagenes.map(img => img.id === id ? editada : img);
+                guardarImagenes(actualizadas);
+                mostrarImagenes();
+            }
+        }
+    }
+});
+// ------------------ fin eventos editar y eliminar imagenes ------------------
+
+
+
+//***************FIN AGREGADO POR JOACO********************//
+
 });

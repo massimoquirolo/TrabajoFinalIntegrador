@@ -1,5 +1,5 @@
-/*Apenas llegas a panelAdmin.html, el script admin.js se ejecuta. Este script todavía está buscando la clave antigua (usuario) para ver si estás logueado. 
-Como no la encuentra (porque ahora guardamos accessToken), decide que no tienes permiso y te patea de vuelta a login.html.*/
+/*cuando se llega al panelAdmin.html, el script admin.js se ejecuta, se obtiene de accestoken en el sessionstorage para ver si estas logeado
+si se usara el que estaba antes (usuario) tomaria las credenciales viejas y quedaria en bucle*/
 
 document.addEventListener('DOMContentLoaded', () => {
     if (!sessionStorage.getItem("accessToken")) { //ahora apuntamos a accessToken

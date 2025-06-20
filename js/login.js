@@ -34,48 +34,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const usuario = document.getElementById('usuario').value;
         const password = document.getElementById('password').value;
+        let userToken = null; // Variable para guardar el token temporalmente
 
+        // Primer paso, autenticar para tener el token
         fetch('https://dummyjson.com/auth/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 username: usuario,
-                password: password
+                password: password,
             })
         })
         .then(res => {
-            // LÍNEA DE DIAGNÓSTICO 1: Mostramos la respuesta completa del servidor.
-            // Aquí podremos ver el código de estado (ej: 200 para éxito, 400 para error).
-            console.log('Respuesta completa del servidor (res):', res);
-            
-            // Si la respuesta no es OK (ej: error 400), la API envía un mensaje de error.
             if (!res.ok) {
-                // Intentamos leer el JSON del error para ver el mensaje específico.
-                return res.json().then(errorData => {
-                    throw new Error(errorData.message || 'Credenciales inválidas');
-                });
+                // credenciales incorrecta, api devuelve error 404
+                throw new Error('Usuario o contraseña incorrectos.');
             }
-            // Si la respuesta es OK (código 200), procesamos el JSON.
             return res.json();
         })
-        .then(data => {
-            // LÍNEA DE DIAGNÓSTICO 2: Mostramos los datos que recibimos en formato JSON.
-            // Aquí veremos si el objeto 'data' contiene la propiedad 'token'.
-            console.log('Datos recibidos en formato JSON (data):', data);
+        .then(loginData => {
+            // se guarda el token
+            userToken = loginData.accessToken; 
+            if (!userToken) {
+                // este error es por si la api cambia y no devuelve token
+                throw new Error('La autenticación fue exitosa pero no se recibió un token.');
+            }
 
-            if (data.accessToken) {
-                sessionStorage.setItem('accessToken', data.token);
+            // Segundo paso, usar el token para verificar el rol
+            // Hacemos una nueva llamada al endpoint 'me' para obtener los datos del usuario logueado.
+            return fetch('https://dummyjson.com/auth/me', {
+                method: 'GET',
+                headers: {
+                    // se envia el token a la cabecera 'Authorization'
+                    'Authorization': `Bearer ${userToken}`,
+                },
+            });
+        })
+        .then(res => res.json())
+        .then(userData => {
+            // tenemos los datos del user incluyendo tambien el rol
+            console.log('Datos del usuario logueado:', userData); // Para pruebas
+
+            // verificamos la clave
+            if (userData.role === 'admin') {
+                // Si es admin, guardamos el token en sessionStorage y redirigimos
+                alert('¡Bienvenido, administrador!');
+                sessionStorage.setItem('accessToken', userToken);
                 window.location.href = './panelAdmin.html';
             } else {
-                // Este error se mostrará si la respuesta fue 200 OK pero no vino un token.
-                throw new Error('La respuesta del servidor fue exitosa pero no incluyó un token.');
+                // Si no es admin, lanzamos un error y no le damos acceso
+                throw new Error('Acceso denegado. No tienes permisos de administrador.');
             }
         })
         .catch(error => {
-            // El .catch ahora recibirá errores de red Y los errores que lanzamos nosotros.
-            console.error('Error final capturado en .catch:', error);
-            // Mostramos el mensaje de error específico de la API.
-            alert(`Error de autenticación: ${error.message}`);
+            console.error('Error en el proceso de login:', error);
+            alert(`Error: ${error.message}`);
         });
     });
 });

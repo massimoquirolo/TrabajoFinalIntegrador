@@ -142,4 +142,12 @@ function guardarImagenes(imagenes) {
 
 inicializarImagenes(); // Ejecutamos inicializacion
 
-//  fin del nuevo codigo para imagenes 
+//  fin del nuevo codigo para imagenes
+
+
+/// PRESUPUESTOS
+
+function getPresupuestos() {
+    const presupuestosJSON = localStorage.getItem('presupuestos');
+    return presupuestosJSON ? JSON.parse(presupuestosJSON) : [];
+}

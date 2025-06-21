@@ -17,8 +17,8 @@
             <div class="container-fluid">
                 <span class="navbar-brand font-weight-bold">Panel Administrador</span>
                 <div>
-                    <a href="panelPresupuestos.html" class="btn btn-danger me-2">Ver Presupuestos</a>
-                    <a href="panelAdmin.html" class="btn btn-info me-2">Gestionar Salones</a>                    
+                    <a href="panelAdmin.html" class="btn btn-danger me-2">Gestionar Salones</a>
+                    <a href="panelUsers.html" class="btn btn-info me-2">Gestionar Usuarios</a>
                     <a href="index.html" class="btn btn-primary me-2">Inicio</a>
                     <button id="botonSalir" class="btn btn-warning">Salir</button>
                 </div>
@@ -28,29 +28,28 @@
 
     <main class="container-lg mt-4 mb-5">
         <section class="bienvenida">
-            <h2>Administración de Usuarios</h2>
-            <p>Listado de usuarios registrados desde la API externa.</p>
+            <h2>Administración de Presupuestos</h2>
+            <p>Listado de Presupuestos nuevos.</p>
         </section>
 
         <section>
-            <h3>Listado de Usuarios</h3>
+            <h3>Listado de Presupuestos</h3>
             <div class="table-responsive">
                 <table class="table table-striped table-hover admin-table">
                     <thead class="table-dark">
                         <tr>
                             <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Email</th>
-                            <th>Usuario</th>
-                            <th>Rol</th>
-                            <th>Edad</th>
+                            <th>Nombre y Apellido</th>
+                            <th>Fecha De Reserva</th>
+                            <th>Temática</th>
+                            <th>Servicios</th>
+                            <th>Salon</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
-                    <tbody id="tabla-usuarios">
-                        <!-- las fila s se cargan dinamicamente acá -->
+                    <tbody id="tabla-presupuestos">
                         <tr>
-                            <td colspan="6" class="text-center">Cargando usuarios...</td>
+                            <td colspan="6" class="text-center">Cargando presupuestos...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -58,7 +57,8 @@
         </section>
     </main>
     
-    <script src="js/panelUsers.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/panelPresupuesto.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

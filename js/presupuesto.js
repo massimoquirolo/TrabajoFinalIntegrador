@@ -84,8 +84,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Aqui por primera vez cuando se hace un presupuesto, creamos un array vacio, caso contrario traemos el ya existente
+        // y le sumamos el presupuesto con el formato dado. Guardamos los valores solicitados, y lo asociamos al id de un salon.
+        const presupuestos = JSON.parse(localStorage.getItem('presupuestos')) || [];
+
+        // de esta manera utilizando el map resolvemos poder obtener el id de manera secuencial sin tener que duplicar datos
+        let nuevoId = 1;
+        if (presupuestos.length > 0) {
+            const ids = presupuestos.map(p => p.id);
+            const maxId = Math.max(...ids);
+            nuevoId = maxId + 1;
+        }
+
         const nuevoPresu = {
-            id: `presupuesto${Date.now()}`,
+            id: nuevoId,
             apellidoNombre,
             fecha,
             tematica,
@@ -94,14 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
             idSalon: salon.id,
         };
 
-        // Aqui por primera vez cuando se hace un presupuesto, creamos un array vacio, caso contrario traemos el ya existente
-        // y le sumamos el presupuesto con el formato dado. Guardamos los valores solicitados, y lo asociamos al id de un salon.
-        const presupuestos = JSON.parse(localStorage.getItem('presupuestos')) || [];
         presupuestos.push(nuevoPresu);
         localStorage.setItem('presupuestos', JSON.stringify(presupuestos));
 
-        alert('Presupuesto solitado correctamente.');
-        window.location.href = 'index.html';
+        window.location.href = `presupuestoDetalle.html?id=${nuevoPresu.id}`;
         
     });
 

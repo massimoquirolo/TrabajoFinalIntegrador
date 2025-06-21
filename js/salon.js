@@ -41,6 +41,6 @@ if (salon.disponible) {
     const presupuesto = document.getElementById('botonPresupuesto');
     const divres      = document.createElement('div');
     divres.className = 'col-md-12 text-center';
-    divres.innerHTML = '<a href="#" class="boton"><span>Pedir Prespuesto</span></a>';
+    divres.innerHTML = `<a href="presupuesto.html?id=${salon.id}" class="boton"><span>Pedir Prespuesto</span></a>`;
     presupuesto.appendChild(divres);
 }

@@ -15,21 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // funcion que carga y muestra los usuarios
-    const cargarUsuarios = () => {
-        const tablaBody = document.getElementById('tabla-usuarios');
+    const cargarUsuarios = async () => {
+        const tablaBody     = document.getElementById('tabla-usuarios');
         tablaBody.innerHTML = '<tr><td colspan="6" class="text-center">Cargando...</td></tr>';
 
-        fetch('https://dummyjson.com/users')
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error('No se pudo obtener la lista de usuarios.');
-                }
-                return res.json();
-            })
-            .then(data => {
-                tablaBody.innerHTML = ''; // limpiando la tabla antes de utilizar
-                
-                // data.users es el array que contiene todos los usuarios de la que hay en la api
+        try {
+            const res = await fetch('https://dummyjson.com/users');
+            if (!res.ok) {
+                throw new Error('No se pudo obtener la lista de usuarios.');
+            }
+
+            const data = await res.json();
+            tablaBody.innerHTML = ''; // limpiando la tabla antes de utilizar
+
+            // data.users es el array que contiene todos los usuarios de la que hay en la api
                 data.users.forEach(user => {
                     const row = document.createElement('tr');
                     
@@ -40,16 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         <td>${user.lastName}</td>
                         <td>${user.email}</td>
                         <td>${user.username}</td>
+                        <td>${user.role}</td>
                         <td>${user.age}</td>
                     `;
                     
                     tablaBody.appendChild(row);
-                });
-            })
-            .catch(error => {
-                console.error('Error al cargar los usuarios:', error);
-                tablaBody.innerHTML = `<tr><td colspan="6" class="text-center text-danger">Error al cargar los usuarios: ${error.message}</td></tr>`;
             });
+        } catch (error) {
+            console.error('Error al cargar los usuarios:', error);
+            tablaBody.innerHTML = `<tr><td colspan="6" class="text-center text-danger">Error al cargar los usuarios: ${error.message}</td></tr>`;
+        }
     };
 
     // llamamos a la funcion para que cargue la informacion

@@ -29,54 +29,53 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = './panelAdmin.html';
     }
 
-    document.getElementById('loginForm').addEventListener('submit', function(event){
+    document.getElementById('loginForm').addEventListener('submit', async function(event){
         event.preventDefault();
 
         const usuario = document.getElementById('usuario').value;
         const password = document.getElementById('password').value;
         let userToken = null; // Variable para guardar el token temporalmente
 
-        // Primer paso, autenticar para tener el token
-        fetch('https://dummyjson.com/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                username: usuario,
-                password: password,
-            })
-        })
-        .then(res => {
+        try {
+            // Autentica para obtener el token
+            const res = await fetch('https://dummyjson.com/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    username: usuario,
+                    password: password,
+                }),
+            });
+
             if (!res.ok) {
                 // credenciales incorrecta, api devuelve error 404
                 throw new Error('Usuario o contraseña incorrectos.');
             }
-            return res.json();
-        })
-        .then(loginData => {
-            // se guarda el token
-            userToken = loginData.accessToken; 
+
+            const loginInfo = await res.json();
+            userToken = loginInfo.accessToken;
+
             if (!userToken) {
                 // este error es por si la api cambia y no devuelve token
                 throw new Error('La autenticación fue exitosa pero no se recibió un token.');
             }
 
-            // Segundo paso, usar el token para verificar el rol
-            // Hacemos una nueva llamada al endpoint 'me' para obtener los datos del usuario logueado.
-            return fetch('https://dummyjson.com/auth/me', {
+            // Verificamos el rol con el token anterior
+            // Hacemos una nueva llamada al endpoint 'me' para obtener los datos del usuario logueado
+            const respUsuario = await fetch('https://dummyjson.com/auth/me', {
                 method: 'GET',
                 headers: {
-                    // se envia el token a la cabecera 'Authorization'
                     'Authorization': `Bearer ${userToken}`,
                 },
             });
-        })
-        .then(res => res.json())
-        .then(userData => {
-            // tenemos los datos del user incluyendo tambien el rol
-            console.log('Datos del usuario logueado:', userData); // Para pruebas
+
+            const userInfo = await respUsuario.json();
+
+           // tenemos los datos del user incluyendo tambien el rol
+            console.log('Datos del usuario logueado:', userInfo); // Para pruebas
 
             // verificamos la clave
-            if (userData.role === 'admin') {
+            if (userInfo.role === 'admin') {
                 // Si es admin, guardamos el token en sessionStorage y redirigimos
                 alert('¡Bienvenido, administrador!');
                 sessionStorage.setItem('accessToken', userToken);
@@ -85,10 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Si no es admin, lanzamos un error y no le damos acceso
                 throw new Error('Acceso denegado. No tienes permisos de administrador.');
             }
-        })
-        .catch(error => {
+        } catch (error) {
             console.error('Error en el proceso de login:', error);
             alert(`Error: ${error.message}`);
-        });
+        }
+
     });
 });

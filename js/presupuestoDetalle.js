@@ -7,10 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const presupuesto = presupuestos.find(p => p.id === parseInt(presuId));
 
-    console.log(presupuestos)
-    console.log(presupuesto)
-    console.log(presuId)
-
     if (!presupuesto) {
         document.body.innerHTML = '<p class="text-center mt-5 text-danger">Presupuesto no encontrado</p>';
         throw new Error('Presupuesto no encontrado');
@@ -18,8 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const salon = salones.find(s => s.id === presupuesto.idSalon);
     console.log(salon)
-    document.getElementById('precioSalon').textContent = salon.precio.toLocaleString();
-
+    document.getElementById('precioSalon').textContent      = salon.precio.toLocaleString();
     document.getElementById('nya').textContent              = presupuesto.apellidoNombre;
     document.getElementById('fecha').textContent            = presupuesto.fecha;
     document.getElementById('tematica').textContent         = presupuesto.tematica;

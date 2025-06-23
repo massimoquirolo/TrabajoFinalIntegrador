@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Aqui por primera vez cuando se hace un presupuesto, creamos un array vacio, caso contrario traemos el ya existente
         // y le sumamos el presupuesto con el formato dado. Guardamos los valores solicitados, y lo asociamos al id de un salon.
-        const presupuestos = JSON.parse(localStorage.getItem('presupuestos')) || [];
+        const presupuestos = getPresupuestos();
 
         // de esta manera utilizando el map resolvemos poder obtener el id de manera secuencial sin tener que duplicar datos
         let nuevoId = 1;

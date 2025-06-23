@@ -50,20 +50,23 @@
                         <textarea class="form-control" id="desc-salon" rows="1" maxlength="90" required></textarea>
                         <p>Caracteres restantes: <span id="contador">90</span></p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="precio-salon" class="form-label">Precio</label>
                         <input type="number" class="form-control" id="precio-salon" min="0" required>
                     </div>
-                    <div class="col-md-4">
-                        <label for="imagen-salon" class="form-label">URL de imagenes (Separarlas con comas ",")</label>
-                        <input type="text" class="form-control" id="imagen-salon" value="img/salon-ejemplo.jpg" required>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="disponible-salon" class="form-label">Disponibilidad</label>
                         <select id="disponible-salon" class="form-select">
                             <option value="true" selected>Disponible</option>
                             <option value="false">Reservado</option>
                         </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="imagen-salon" class="form-label">URL de imágenes</label>
+                        <div class="form-control" id="tag" style="min-height: 45px;">
+                            <input type="text" id="imagen-salon-input" class="border-0 sin-borde" placeholder="Pegá una URL y presioná Enter">
+                        </div>
+                        <input type="hidden" id="imagen-salon" name="imagen-salon">
                     </div>
                     <div class="col-12">
                         <button type="submit" class="boton" id="boton-aceptar-salon"><span>Agregar Salón</span></button>

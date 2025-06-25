@@ -74,13 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const serviciosSeleccionados = [];
-        // Aqui utilizamos el previamente creado array de checkboxes, para obtener la descripcion de los servicios
+        // Aqui utilizamos el previamente creado array de checkboxes, para obtener la ID de los servicios
         // seleccionados, y poder almacenarlos en forma de array dentro del data de presupuestos.
         checkboxes.forEach(cb => {
             if (cb.checked) {
-                const label = document.querySelector(`label[for="${cb.id}"]`);
-                const descriServicio = label.textContent.split(':')[0];
-                serviciosSeleccionados.push(descriServicio);
+                serviciosSeleccionados.push(cb.id);
             }
         });
 

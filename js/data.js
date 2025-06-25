@@ -117,27 +117,12 @@ function guardarImagenes(imagenes) {
 
 inicializarImagenes(); // Ejecutamos inicializacion
 
-//  fin del nuevo codigo para imagenes 
+//  fin del nuevo codigo para imagenes
 
 
-// funcion para inicializar el localstorage si la const no existe
-function inicializarLocalStorage() {
-    if (!localStorage.getItem('salones')) {
-        localStorage.setItem('salones', JSON.stringify(Salones));
-        console.log('LocalStorage inicializado con salones por defecto.');
-    }
+/// PRESUPUESTOS
+
+function getPresupuestos() {
+    const presupuestosJSON = localStorage.getItem('presupuestos');
+    return presupuestosJSON ? JSON.parse(presupuestosJSON) : [];
 }
-
-// funcion que devuelve todos los salones del localstorage
-function getSalones() {
-    const salones = localStorage.getItem('salones');
-    return salones ? JSON.parse(salones) : [];
-}
-
-// funcion para guardar todos los salones en el localstorage
-function guardarSalones(salones) {
-    localStorage.setItem('salones', JSON.stringify(salones));
-}
-
-// este script debeiria ejecutarse en todas las paginas donde se llama a data.js
-inicializarLocalStorage();

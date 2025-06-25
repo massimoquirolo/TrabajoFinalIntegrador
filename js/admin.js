@@ -1,8 +1,13 @@
+/*cuando se llega al panelAdmin.html, el script admin.js se ejecuta, se obtiene de accestoken en el sessionstorage para ver si estas logeado
+si se usara el que estaba antes (usuario) tomaria las credenciales viejas y quedaria en bucle*/
+
 document.addEventListener('DOMContentLoaded', () => {
-    if (!sessionStorage.getItem("usuario")) {
+    if (!sessionStorage.getItem("accessToken")) { //ahora apuntamos a accessToken
         window.location.href = "login.html";
+        return; // Detenemos la ejecucion del script por si hay b ucle o otro error
     }
 
+    // Salones
     const formSalon                 = document.getElementById('form-salon');
     const idSalonInput              = document.getElementById('salon-id');
     const nombreSalonInput          = document.getElementById('nombre-salon');
@@ -15,7 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const botonAceptar              = document.getElementById('boton-aceptar-salon');
     const botonEditar               = document.getElementById('boton-cancelar-salon');
 
+    // Servicios
+    const formServicio          = document.getElementById('form-servicio');
+    const idServicioInput       = document.getElementById('servicio-id');
+    const descriServicioInput   = document.getElementById('descri-servicio');
+    const precioServicioInput   = document.getElementById('precio-servicio');
+    const tablaServicios        = document.getElementById('tabla-servicios');
+    const btnAceptarServicio    = document.getElementById('boton-aceptar-servicio');
+    const btnEditarServicio     = document.getElementById('boton-cancelar-servicio');
+
+    // Tags imagenes
+    const inputImg       = document.getElementById("imagen-salon-input");
+    const contenedorTags = document.getElementById("tag");
+
     let salonIdAux = null; // para seguir editando
+    let urls = [];
 
     // cargar/mostrar salones
     function mostrarSalones() {
@@ -67,7 +86,17 @@ document.addEventListener('DOMContentLoaded', () => {
         } else { // agregamos nuevo
             salones.push(dataSalon);
         }
-        
+
+        // Esta linea, separa las urls por comas, en un array, para luego recorrrerlo y agregar las imagenes al data correctamente.
+        urls.forEach((url, index) => {
+            const imagen = {
+                id: 'img' + Date.now() + '_' + index,
+                idsitio: dataSalon.id,
+                url: url
+            };
+            Imagenes.push(imagen);
+        });
+
         guardarSalones(salones);
         mostrarSalones();
         resetearForm();
@@ -85,8 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
         salonIdAux = null;
         botonAceptar.querySelector('span').textContent = 'Agregar Salón';
         botonEditar.style.display = 'none';
-        imagenSalonInput.value = 'img/salon-ejemplo.jpg';
+        imagenSalonInput.value = '';
         disponibleSalonInput.value = 'true';
+
+        // Eliminamos las tags visualmente del formulario al cancelar la edicion, o al agregar un salon
+        let tags = contenedorTags.querySelectorAll(".tag");
+        tags.forEach(tag => tag.remove());
+        urls = []; 
+        inputImg.value = '';
     }
 
     // Contador de caracteres de la descripcion de salones en el administrador
@@ -119,7 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 direccionSalonInput.value = salon.direccion;
                 descripcionSalonInput.value = salon.descripcion;
                 precioSalonInput.value = salon.precio;
-                imagenSalonInput.value = salon.imagen;
+
+                let Imgs = getImagenes();
+                const imagenesSalon = Imgs.filter(img => img.idsitio === salon.id);
+                precargarTagsImagenes(imagenesSalon.map(img => img.url));
+
                 disponibleSalonInput.value = salon.disponible ? 'true' : 'false';
 
                 botonAceptar.querySelector('span').textContent = 'Guardar Cambios'; // Aqui cambiamos el boton de Agregar Salon a Guardar Cambios
@@ -146,9 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-
-//  inicio mostrar servicios (con tabla) 
-const tablaServicios = document.getElementById('tabla-servicios');
 
 //  inicio mostrar servicios CON BOTONES 
 function mostrarServicios() {
@@ -208,6 +244,73 @@ tablaServicios.addEventListener('click', (e) => {
 mostrarServicios();
 //  fin mostar servicios  
 
+
+    // Tags de imagenes
+    function actualizarInputOculto() {
+        imagenSalonInput.value = urls.join(",");
+    }
+
+    function crearTag(url) {
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        // Aqui agregamos el tag de manera dinamica, y dejamos implementada la funcion para que elimine la etiqueta "span"
+        // que es la etiqueta padre, y tambien que actue con la funcion eliminarURL al presionar la X.
+        tag.innerHTML = `${url}<button onclick="this.parentElement.remove(); eliminarUrl('${url}')">X</button>`;
+        contenedorTags.insertBefore(tag, inputImg);
+    }
+
+    inputImg.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            const url = inputImg.value.trim();
+            if (url && !urls.includes(url)) {
+                urls.push(url);
+                crearTag(url);
+                actualizarInputOculto();
+            }
+            inputImg.value = "";
+        }
+    });
+
+    // Esta funcion de precargar, es la utilizada a la hora de presionar el boton editar salon, para que cargue los tags ya existentes en los
+    // salones que hay, y traiga la informacion real guardada.
+    function precargarTagsImagenes(urlsArray) {
+        // Limpiar tags anteriores
+        const tags = contenedorTags.querySelectorAll(".tag");
+        tags.forEach(tag => tag.remove());
+
+        urls = []; // Vaciar el array también
+
+        // Crear tags con las URLs del salón
+        urlsArray.forEach(url => {
+            url = url.trim();
+            if (url) {
+                urls.push(url);
+                crearTag(url);
+            }
+        });
+
+        imagenSalonInput.value = urls.join(',');
+    }
+
+    // Esta funcion crea el elemento del tag en si, con el texto del link, y la X para luego poder ser eliminado
+    // Y tambien se creo el "EventListener" para la cruz, y que al momento de presionarla, sea eliminado el tag correspondiente.
+    function crearTag(url) {
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = url;
+
+        const btnTag = document.createElement("button");
+        btnTag.textContent = "X";
+        btnTag.addEventListener("click", () => {
+            tag.remove(); // Elimina el tag visual
+            urls = urls.filter(u => u !== url); // Elimina del array
+            actualizarInputOculto(); // Actualiza el input oculto
+        });
+
+        tag.appendChild(btnTag);
+        contenedorTags.insertBefore(tag, inputImg);
+    }
 
 
 //  inicicio mostrar imagenes como tabla 
